@@ -67,7 +67,7 @@ def fetch_youtube_title(id)
       :parameters =>
       {
         :part => 'snippet,contentDetails,statistics',
-        :fields => 'items(snippet(title),contentDetails(duration),statistics(viewCount))',
+        :fields => 'items(snippet(title),snippet(channelTitle),contentDetails(duration),statistics(viewCount))',
         :id => id
       }
     )
@@ -81,7 +81,7 @@ def fetch_youtube_title(id)
       duration = search_result.contentDetails.duration
       duration = duration[2..-1].downcase
 
-      title = "#{search_result.snippet.title} [#{duration} - #{search_result.statistics.viewCount} views]";
+      title = "#{search_result.snippet.title} [#{duration} - #{search_result.statistics.viewCount} views - #{search_result.snippet.channelTitle}]";
     end
     return title;
 
